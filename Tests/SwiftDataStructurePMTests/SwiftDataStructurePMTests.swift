@@ -38,4 +38,35 @@ final class SwiftDataStructurePMTests: XCTestCase {
         
         XCTAssertEqual(linkedLis.head, resultLinkedList)
     }
+    
+    func testLinkedList_whenFindNode_returnExactNodeAtIndex() {
+        let index = 1
+        var linkedLis = LinkedList<Int>()
+        
+        linkedLis.append(1)
+        linkedLis.append(2)
+        
+        let result = linkedLis.node(at: index)
+
+        let node = Node(val: 2, next: nil)
+        XCTAssertEqual(node, result)
+    }
+    
+    func testLinkedList_whenInsertAtNode_insertSuccessful() {
+        let index = 0
+        var linkedLis = LinkedList<Int>()
+        
+        linkedLis.append(1)
+        linkedLis.append(2)
+        
+        let result = linkedLis.node(at: index)
+        
+        XCTAssertNotNil(result)
+        
+        linkedLis.insert(3, after: result!)
+        
+        let comparedNode = Node(val: 1, next: Node(val: 3, next: Node(val: 2)))
+        
+        XCTAssertEqual(comparedNode, linkedLis.head)
+    }
 }
